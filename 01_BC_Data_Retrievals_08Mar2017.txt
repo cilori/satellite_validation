@@ -1,0 +1,329 @@
+Seq | Data_Center_Code | Parameter_Name | Unit | Places_Before | Places_After | Minimum_Value | Maximum_Value | Originally_Entered_By | Originally_Parameter_Description
+90000090 | 90 | % Sfc light | % | 3 | 4 | 0.00000 | 100.00000 | P. Strain | Percentage surface light
+90000049 | 90 | Acidified calcium | umole/kg | 3 | 2 | 0.00000 | 20.00000 | P. Strain | Acidified calcium
+90000275 | 20 | Ag | mg/m3 | 2 | 2 | -1.00000 | 10.00000 | BCPIERRE | Silver - filtered not preserved
+90000235 | 20 | Ag-particulate | g/kg | 2 | 2 | -1.00000 | 20.00000 | BCPIERRE | Silver particulate
+90000308 | 20 | Ag-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Silver- Sediment
+90000252 | 20 | Al | mg/m3 | 4 | 2 | -1.00000 | 5000.00000 | BCPIERRE | Aluminium - filtered
+90000047 | 90 | Al - filtered | mg/m3 | 6 | 2 | 0.00000 | 50000.00000 | P. Strain | Al - filtered
+90000039 | 90 | Al - unfiltered | mg/m3 | 6 | 2 | 0.00000 | 200000.00000 | P. Strain | Al - unfiltered
+90000006 | 90 | Alkalinity | umole/kg | 4 | 3 | 0.00000 | 10000.00000 | P. Strain | Total alkalinity
+90000242 | 20 | Al-particulate | g/kg | 3 | 1 | -1.00000 | 200.00000 | BCPIERRE | Aluminium - particulate
+90000306 | 20 | Al-Sediment  | ug/g | 2 | 2 | 0.00000 | 20000.00000 | BCPIERRE | Aluminium - Sediment 
+90000028 | 90 | Ammonia | mmol/m3 | 4 | 2 | 0.00000 | 500.00000 | P. Strain | Ammonia
+90000069 | 90 | AOU | umole/kg | 4 | 2 | -200.00000 | 500.00000 | P. Strain | Apparent oxygen utilization (AOU)
+90000255 | 20 | As | mg/m3 | 3 | 2 | -1.00000 | 500.00000 | BCPIERRE | Arsenic - filtered
+90000237 | 20 | As-particulate | ug/g | 5 | 1 | -1.00000 | 50000.00000 | BCPIERRE | Arsenic - particulate
+90000310 | 20 | As-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Arsenic- Sediment
+90000143 | 20 | ATP | mg/m3 | 2 | 6 | 0.00000 | 8.00000 | DEVINEL | Biomass estimator using ATP activity
+90000312 | 20 | Au-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Gold - Sediment
+90000258 | 20 | B | mg/m3 | 10 | 10 | -1.00000 | 1000.00000 | BCPIERRE | Boron - filtered not preserved
+90000282 | 20 | Ba | mg/m3 | 3 | 2 | -1.00000 | 100.00000 | BCPIERRE | Barium - filtered not preserved
+90000062 | 90 | Ba - filtered | mg/m3 | 3 | 2 |  |  | P. Strain | Ba - filtered
+90000199 | 20 | Ba - unfiltered_01 | mg/m3 | 3 | 2 |  |  | MARY | Barium / Unfiltered_01
+90000126 | 20 | Bacterial Prod. | mg C/m**3/h | 2 | 4 | 0.00010 | 99.99990 | MARY | Bacterial Production BODC - BPRD
+90000246 | 20 | Ba-particulate | ug/g | 4 | 0 | -1.00000 | 2500.00000 | BCPIERRE | Barium - particulate
+90000314 | 20 | Ba-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Barium - Sediment
+90000256 | 20 | Be | mg/m3 | 1 | 2 | -1.00000 | 2.00000 | BCPIERRE | Beryllium - filtered not preserved
+90000221 | 20 | Be-particulate | ug/g | 2 | 1 | -1.00000 | 20.00000 | BCPIERRE | Beryllium - particulate
+90000316 | 20 | Be-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Beryllium - Sediment
+90000223 | 20 | Bi-particulate | ug/g | 1 | 2 | -1.00000 | 100.00000 | BCPIERRE | Bismuth - particulate
+90000318 | 20 | Bi-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Bismuth - Sediment
+90000095 | 90 | BOD - 5 day | mmol/m3 | 4 | 1 | 0.00000 | 9999.00000 | P. Strain | Bacterial oxygen demand, 5 day
+90000218 | 20 | B-particulate | g/kg | 10 | 10 | -1.00000 | 1000.00000 | BCPIERRE | Boron - particulate
+90000093 | 90 | BUG_MEAS - diameter | mm | 4 | 3 |  |  | Mary Kennedy | diameter measurement
+90000091 | 90 | BUG_MEAS - length | mm | 4 | 3 |  |  | Mary Kennedy | length measurement
+90000092 | 90 | BUG_MEAS - width | mm | 4 | 3 |  |  | Mary Kennedy | width measurement of a bug
+90000058 | 90 | Butane | ppmv | 3 | 2 | 0.00000 | 20.00000 | P. Strain | Butane
+90000297 | 20 | C content | mg/ind | 4 | 2 | 0.00000 | 9999.99000 | MARY | Carbon content per individual
+90000257 | 20 | Ca | mg/l | 3 | 2 | -1.00000 | 100.00000 | BCPIERRE | Calcium - filtered not preserved
+90000010 | 90 | Calcium | p | 3 | 3 | 0.00000 | 15.00000 | P. Strain | Calcium
+90000138 | 20 | Calorimetry | cal/mg | 6 | 3 | 0.00000 | 999999.99900 | BCPIERRE | Calories measured using a Bomb Calorimeter?
+90000219 | 20 | Ca-particulate | g/kg | 3 | 2 | -1.00000 | 400.00000 | BCPIERRE | Calcium - particulate
+90000007 | 90 | Carbonate | umole/kg | 4 | 3 | 0.00000 | 9999.00000 | P. Strain | Carbonate ion concentration
+90000120 | 20 | Carbonate alkalinity | umole/kg | 4 | 3 | 0.00000 | 9999.00000 | BCMESD | Carbonate alkalinity
+90000320 | 20 | Ca-Sediment | ug/g | 2 | 2 | 0.00000 | 5000.00000 | BCPIERRE | Calcium - Sediment
+90000075 | 90 | CCl4 | pmole/kg | 4 | 2 | -0.50000 | 100.00000 | P. Strain | Carbon tetrachloride (CCl4)
+90000254 | 20 | Cd | mg/m3 | 1 | 3 | -1.00000 | 5.00000 | BCPIERRE | Cadmium - filtered not preserved
+90000046 | 90 | Cd - filtered | mg/m3 | 2 | 3 | 0.00000 | 10.00000 | P. Strain | Cd - filtered
+90000038 | 90 | Cd - unfiltered | mg/m3 | 2 | 3 | 0.00000 | 50.00000 | P. Strain | Cd - unfiltered
+90000293 | 20 | CDOM | mg/m3 | 4 | 2 | 0.00000 | 1500.00000 | MARY | Coloured Dissolved Organic Matter / CTD
+90000233 | 20 | Cd-particulate | ug/g | 2 | 2 | -1.00000 | 50.00000 | BCPIERRE | Cadmium - particulate
+90000322 | 20 | Cd-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Cadmium - Sediment
+90000324 | 20 | Ce-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Cesium - Sediment
+90000023 | 90 | Cesium-137 - total | mBq/l | 3 | 2 | 0.00000 | 300.00000 | P. Strain | Cesium-137 - unfiltered
+90000059 | 90 | Cesium-137 error | mBq/l | 2 | 3 | 0.00000 | 2.50000 | P. Strain | Cesium-137 error (unfiltered)
+90000073 | 90 | Chloride | mmol/m3 | 4 | 3 | 0.00000 | 1000.00000 | P. Strain | Chloride
+90000029 | 90 | Chlorophyll A | mg/m3 | 3 | 6 | 0.00000 | 200.00000 | P. Strain | Chlorophyll a
+90000304 | 30 | Chlorophyll A+B+C | mg/m3 | 3 | 6 | 0.00000 | 250.00000 | LAFLEURC | Chlorophyll A + B + C
+90000135 | 20 | Chlorophyll B | mg/m3 | 3 | 4 | 0.00000 | 10.00000 | BCPIERRE | Chlorophyll B
+90000136 | 20 | Chlorophyll C | mg/m3 | 3 | 4 | 0.00000 | 15.00000 | BCPIERRE | Chlorophyll C
+90000294 | 20 | CHL-SENSOR insitu | mg/m3 | 3 | 6 | 0.00000 | 200.00000 | MARY | aa
+90000295 | 20 | Clutch size | none | 3 | 0 | 0.00000 | 200.00000 | MARY | The clutch size is the number of eggs produced by an individual (eg. copepod)
+90000287 | 20 | Co | mg/m3 | 3 | 3 | -1.00000 | 30.00000 | BCPIERRE | Cobalt - filtered not preserved
+90000042 | 90 | Co - filtered | mg/m3 | 3 | 3 | 0.00000 | 30.00000 | P. Strain | Co - filtered
+90000034 | 90 | Co - unfiltered | mg/m3 | 3 | 3 | 0.00000 | 50.00000 | P. Strain | Co - unfiltered
+90000113 | 20 | conductivity_CTD | S/m | 2 | 3 | 0.00000 | 10.00000 | MARY | conductivity from CTD in Siemens per meter
+90000226 | 20 | Co-particulate | ug/g | 2 | 1 | -1.00000 | 90.00000 | BCPIERRE | Cobalt -  particulate
+90000326 | 20 | Co-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Cobalt - Sediment
+90000478 | 20 | CO2 (pH) | uatm | 4 | 1 | 1.00000 | 5000.00000 | BUGDENJ | Partial pressure of CO2 for pH (ocean acidification)
+90000077 | 90 | CO2 (total) | umole/kg | 4 | 1 | 0.00000 | 3000.00000 | P. Strain | Total inorganic carbon (TIC), Total CO2 (TCO2)
+90000253 | 20 | Cr | mg/m3 | 2 | 1 | -1.00000 | 20.00000 | BCPIERRE | Chromium - filtered not preserved
+90000061 | 90 | Cr - filtered | mg/m3 | 3 | 2 |  |  | P. Strain | Cr - filtered
+90000068 | 90 | Cr - unfiltered | mg/m3 | 3 | 2 |  |  | P. Strain | Cr - unfiltered
+90000228 | 20 | Cr-particulate | ug/g | 3 | 1 | -1.00000 | 2500.00000 | BCPIERRE | Chromium - particulate
+90000328 | 20 | Cr-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Chromium - Sediment
+90000115 | 20 | CTD_ scan # | none | 6 | 0 | 0.00000 | 999999.00000 | MARY | can link to scan number on UP trace of ODF file
+90000274 | 20 | Cu | mg/m3 | 2 | 2 | -1.00000 | 90.00000 | BCPIERRE | Copper - filtered not preserved
+90000044 | 90 | Cu - filtered | mg/m3 | 4 | 2 | 0.00000 | 250.00000 | P. Strain | Cu - filtered
+90000036 | 90 | Cu - unfiltered | mg/m3 | 4 | 2 | 0.00000 | 1000.00000 | P. Strain | Cu - unfiltered
+90000227 | 20 | Cu-particulate | ug/g | 3 | 1 | -1.00000 | 500.00000 | BCPIERRE | Copper - particulate
+90000330 | 20 | Cu-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Copper - Sediment
+90000024 | 90 | C13 - POC | o/oo PDB | 3 | 2 | -60.00000 | -10.00000 | P. Strain | C-13/C-12 ratio in particulate organic carbon, v PDB (PeeDee Belemnite)
+90000021 | 90 | C13 - Sed. Org. C | o/oo PDB | 4 | 2 | -35.00000 | -5.00000 | P. Strain | C-13/C-12 in organic carbon, surface sediments, v PDB (PeeDee Belemnite)
+90000019 | 90 | C13 - Total CO2 | o/oo PDB | 4 | 2 | -20.00000 | 5.00000 | P. Strain | C-13/C-12 ratio in TCO2, v PDB (PeeDee Belemnite)
+90000124 | 20 | delete | uE m-2 s-1 | 4 | 3 | 0.00000 | 4000.00000 | MARY | delete - entered type twice
+90000209 | 20 | delete | umol/m3/day | 4 | 4 | 0.00000 | 2000.00000 | MARY | error
+90000137 | 30 | Density | kg/m3 | 3 | 3 | -0.20000 | 40.00000 | DEVINEL | Density
+90000127 | 90 | Diss. Organic Carbon | mmol/m3 | 5 | 2 | 0.00000 | 1000.00000 | BCPIERRE | Dissolved Organic Carbon = CORG DX from MEDS Parm List
+90000201 | 20 | Diss. Organic Phosph | mmol/m3 | 5 | 2 | 0.00000 | 1000.00000 | MARY | dissolved organic Phosphorus
+90000292 | 20 | DON | mmol/m3 | 5 | 4 | 0.00000 | 100.00000 | BCPIERRE | Dissolved Organic Nitrogen
+90000139 | 30 | Dry Weight Biomass | mg/m3 | 6 | 4 | 0.00000 | 999999.99990 | ISABELLE | Dry weight biomass
+90000299 | 20 | DryWeight | mg/ind | 4 | 2 | 0.00000 | 9999.99000 | MARY | Dry weight of an individual
+90000206 | 20 | DryWeight_AshFree | mg/m3 | 5 | 2 | 0.00000 | 9999.00000 | MARY | ash free dry weight value
+90000207 | 20 | DryWeight_calories | cal / g dry wt | 5 | 1 | 0.00000 | 99999.00000 | MARY | caloric content of dry weight
+90000205 | 20 | DryWeight_Carbon | mg/m3 | 5 | 3 | 0.00000 | 99999.00000 | MARY | carbon content of dry weight
+90000204 | 20 | DryWeight_TotalSamp | mg/m3 | 5 | 3 | 0.00000 | 99999.00000 | MARY | dry weight of the total sample
+90000300 | 20 | Egg Production Rates | eggs fem-1 day-1 | 3 | 0 | 0.00000 | 999.00000 | MARY | Egg production rate measurement as determined from experiments
+90000056 | 90 | Ethane | ppmv | 3 | 2 | 0.00000 | 30.00000 | P. Strain | Ethane
+90000202 | 20 | extinction Coef | m-1 | 3 | 3 | 0.00000 | 100.00000 | MARY | extinction Coefficient (K)
+90000278 | 20 | Fe | mg/m3 | 4 | 2 | -1.00000 | 5000.00000 | BCPIERRE | Iron - Filtered or unfiltered
+90000040 | 90 | Fe - filtered | mg/m3 | 6 | 2 | 0.00000 | 30000.00000 | P. Strain | Fe - filtered
+90000032 | 90 | Fe - unfiltered | mg/m3 | 6 | 2 | 0.00000 | 100000.00000 | P. Strain | Fe - unfiltered
+90000301 | 20 | Female_Maturity | % | 3 | 0 | 0.00000 | 100.00000 | MARY | Percentage of females identified as mature
+90000302 | 20 | Females_Spawning | none | 3 | 0 | 0.00000 | 100.00000 | MARY | Measurement of the number of females that spawned
+90000225 | 20 | Fe-particulate | g/kg | 3 | 0 | -1.00000 | 500.00000 | BCPIERRE | Iron - particulate
+90000332 | 20 | Fe-Sediment | ug/g | 2 | 2 | 0.00000 | 10000.00000 | BCPIERRE | Iron - Sediment
+90000132 | 20 | Fluorescence in Volt | Volts | 3 | 4 | 0.00000 | 30.00000 | BCPIERRE | In situ Fluorecsence by fluorometer in volts
+90000063 | 90 | Freon 11 | pmole/kg | 2 | 3 | -0.50000 | 20.00000 | P. Strain | Freon 11 (CFC 11; CFCl3)
+90000074 | 90 | Freon 113 | pmole/kg | 2 | 3 | -0.50000 | 25.00000 | P. Strain | Freon 113 (CFC 113; 1,1,2-trichlorotrifluoroethane)
+90000064 | 90 | Freon 12 | pmole/kg | 2 | 3 | -0.50000 | 20.00000 | P. Strain | Freon 12 (CFC 12; CF2Cl2)
+90000050 | 90 | Helium E-08 | cc/g | 3 | 2 |  |  | P. Strain | Helium E-08
+90000051 | 90 | He3 | % | 3 | 2 |  |  | P. Strain | Delta He3
+90000052 | 90 | He3 error | % | 3 | 2 |  |  | P. Strain | Delta He3 Error
+90000334 | 20 | Hf-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Hafnium - Sediment
+90000067 | 90 | Hg - reactive | pM | 3 | 2 | 0.00000 | 20.00000 | P. Strain | Hg concentration before sample oxidation
+90000066 | 90 | Hg - total | pM | 3 | 2 | 0.00000 | 50.00000 | P. Strain | Hg concentration after sample oxidation
+90000336 | 20 | Hg-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Mercury - Sediment
+90000160 | 90 | HPLC_ACAROT | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | alpha-carotene
+90000161 | 90 | HPLC_ALLOX | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | alloxanthin
+90000162 | 90 | HPLC_ASTAX | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | astaxanthin
+90000163 | 90 | HPLC_BCAROT | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | beta-carotene
+90000165 | 90 | HPLC_BUTLIKE | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | hplc pigment similar to but19
+90000164 | 90 | HPLC_BUT19 | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | 19-butanoyl-oxy-fucoxanthin
+90000166 | 90 | HPLC_CHLA | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | hplc chlorophyll a (includes chlorophyllide a+)
+90000167 | 90 | HPLC_CHLB | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | chlorophyll-b (includes dv-chlb if any present)
+90000168 | 90 | HPLC_CHLC12 | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | chlorophyll - c1+c2
+90000182 | 90 | HPLC_CHLC3 | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | chlorophyll - c3
+90000169 | 90 | HPLC_CHLIDEA | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | chlorophyllide-a
+90000170 | 90 | HPLC_DIADINOX | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | diadinoxanthin
+90000171 | 90 | HPLC_DIATOX | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | diatoxanthin
+90000289 | 20 | HPLC_%DVa | % | 3 | 3 | 0.00000 | 100.00000 | MARY | Percent DVa
+90000290 | 20 | HPLC_%DVb | % | 3 | 3 | 0.00000 | 100.00000 | MARY | Percent DVb
+90000172 | 90 | HPLC_FUCOX | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | fucoxanthin
+90000174 | 90 | HPLC_HEXLIKE | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | hplc pigment similar to hex19 (elutes ~0.1 minute after 19hex)
+90000181 | 90 | HPLC_HEXLIKE2 | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | hplc pigment similar to hex19 (elutes ~0.2 minute after 19hex)
+90000173 | 90 | HPLC_HEX19 | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | 19-hexanoyl-oxy-fucoxanthin
+90000175 | 90 | HPLC_PERID | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | peridinin
+90000176 | 90 | HPLC_PHAEO | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | total hplc phaeopigment concentration (includes all phaeophorbides and phaeophytins)
+90000180 | 90 | HPLC_PRASINOX | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | prasinoxanthin
+90000177 | 90 | HPLC_PYROPHAE | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | pytophaeophorbide a
+90000178 | 90 | HPLC_VIOLAX | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | violaxanthin
+90000179 | 90 | HPLC_ZEA | mg/m3 | 2 | 3 | 0.00000 | 64.00000 | KennedyM | zeaxanthin
+90000078 | 90 | Hydrogen sulfide | mmol/m3 | 3 | 3 | 0.00000 | 500.00000 | P. Strain | Hydrogen sulfide
+90000197 | 20 | IceAlgaeAreal_ATP | mg/m2 | 2 | 4 | 0.00000 | 9.99990 | MARY | ice algae areal ATP
+90000194 | 20 | IceAlgaeAreal_Chl | mg/m2 | 4 | 1 | 0.00000 | 9999.00000 | MARY | Ice algae areal chlorophyll
+90000195 | 20 | IceAlgaeAreal_Phaeo | mg/m2 | 4 | 1 | 0.00000 | 9999.00000 | MARY | Ice algae areal phaeo
+90000083 | 90 | Incident radiation | uE m-2 s-1 | 4 | 1 | 0.00000 | 5000.00000 | P. Strain | Incident radiation
+90000203 | 20 | IncTemp_06H_N15 | degrees C | 3 | 2 | -2.00000 | 35.00000 | MARY | temperature of incubation for 6hr H_N15 incubation in degrees Celcuis
+90000190 | 20 | IncT_insitu | hours | 2 | 2 | 0.00000 | 72.00000 | MARY | Length of insitu incubation in time hours)
+90000187 | 20 | IncT_06H_N15 | hours | 2 | 2 | 0.00000 | 99.00000 | MARY | length of 6hr H_N15 incubation in time (hours)
+90000188 | 20 | IncT_24H_N15 | hours | 2 | 2 | 0.00000 | 99.00000 | MARY | length of 24hr H_N15 incubation in time (hours)
+90000192 | 20 | IncT_24H_SISC14 | hours | 2 | 2 | 0.00000 | 72.00000 | MARY | Incubation time for 24hr SIS incubation using C14
+90000183 | 90 | Incubation_hrs | hours | 2 | 2 | 0.00000 | 99.00000 | MARY | length of production incubation/experiment in time (hours)
+90000273 | 20 | K | mg/m3 | 4 | 0 | -1.00000 | 2000.00000 | BCPIERRE | Potassium - particulate
+90000232 | 20 | K-particulate | g/kg | 2 | 1 | -1.00000 | 50.00000 | BCPIERRE | Potassium - particulate
+90000338 | 20 | K-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Potassium - Sediment
+90000281 | 20 | La | mg/m3 | 10 | 10 | -1.00000 | 1000.00000 | BCPIERRE | Lanthanum - filtered or unfiltered
+90000229 | 20 | La-particulate | ug/g | 2 | 1 | -1.00000 | 90.00000 | BCPIERRE | Lanthanum - particulate
+90000340 | 20 | La-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Lanthium - Sediment
+90000125 | 20 | Leucine Incorp. | pmol/L/h | 4 | 3 | 0.00100 | 999.99900 | MARY | Leucine Incorporation
+90000086 | 90 | Leucine production | pmol m-3 h-1 | 5 | 2 |  |  | P. Strain | Bacterial leucine production
+90000280 | 20 | Li | mg/m3 | 4 | 1 | -1.00000 | 5000.00000 | BCPIERRE | Lithium - filtered or unfiltered
+90000133 | 20 | Light Tansmittance | % | 3 | 2 | 0.00000 | 100.00000 | BCPIERRE | Percent light transmission measured by Transmisometer or other device
+90000231 | 20 | Li-particulate | ug/g | 3 | 1 | -1.00000 | 100.00000 | BCPIERRE | Lithium - particulate
+90000342 | 20 | Li-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Lithium - Sediment
+90000011 | 90 | Magnesium | p | 3 | 2 | 0.00000 | 35.00000 | P. Strain | Magnesium
+90000026 | 90 | Methane | micromol/m**3 | 4 | 3 | 0.00000 | 500.00000 | P. Strain | Methane
+90000076 | 90 | Methyl chloroform | pmole/kg | 4 | 3 | -0.50000 | 200.00000 | P. Strain | Methyl chloroform (CH3CCl3)
+90000283 | 20 | Methyl-Hg | mg/m2/day | 10 | 10 | -1.00000 | 1000.00000 | BCPIERRE | Mercury, methyl
+90000279 | 20 | Mg | mg/m3 | 4 | 0 | -1.00000 | 5000.00000 | BCPIERRE | Magnesium - filtered or unfiltered
+90000230 | 20 | Mg-particulate | g/kg | 2 | 1 | -1.00000 | 50.00000 | BCPIERRE | Magnesium - particulate
+90000344 | 20 | Mg-Sediment | ug/g | 2 | 2 | 0.00000 | 2000.00000 | BCPIERRE | Magnesium - Sediment
+90000277 | 20 | Mn | mg/m3 | 4 | 1 | -1.00000 | 5000.00000 | BCPIERRE | Manganese - filtered or unfiltered
+90000041 | 90 | Mn - filtered | mg/m3 | 5 | 2 | 0.00000 | 5000.00000 | P. Strain | Mn - filtered
+90000033 | 90 | Mn - unfiltered | mg/m3 | 5 | 2 | 0.00000 | 5000.00000 | P. Strain | Mn - unfiltered
+90000220 | 20 | Mn-particulate | g/kg | 5 | 0 | -1.00000 | 50000.00000 | BCPIERRE | Manganese - particulate
+90000346 | 20 | Mn-Sediment | ug/g | 2 | 2 | 0.00000 | 100.00000 | BCPIERRE | Manganese - Sediment
+90000271 | 20 | Mo | mg/m3 | 2 | 2 | -1.00000 | 20.00000 | BCPIERRE | Molybdenum - filtered or unfiltered
+90000217 | 20 | Mo-particulate | g/kg | 2 | 2 | -1.00000 | 50.00000 | BCPIERRE | Molybdenum - particulate
+90000348 | 20 | Mo-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Molybdenum - Sediment
+90000298 | 20 | N content | mg/ind | 4 | 2 | 0.00000 | 9999.99000 | MARY | Nitrogen content per individual
+90000276 | 20 | Na | mg/l | 4 | 2 | -1.00000 | 1000.00000 | BCPIERRE | Sodium - filtered or unfiltered
+90000224 | 20 | Na-particulate | g/kg | 2 | 1 | -1.00000 | 300.00000 | BCPIERRE | Sodium - particulate
+90000350 | 20 | Na-Sediment | ug/g | 2 | 2 | 0.00000 | 10000.00000 | BCPIERRE | Sodium - Sediment
+90000352 | 20 | Nb-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Niobium - Sediment
+90000154 | 90 | NH3Uptake_SIS_day | umol/m3/day | 4 | 2 | 0.00000 | 2000.00000 | KennedyM | Nitrogen (Ammonia) uptake rate measurements from SIS experiments (units = per day)
+90000153 | 90 | NH3Uptake_SIS_hr | umol/m3/hr | 4 | 2 | 0.00000 | 2000.00000 | KennedyM | Nitrogen (Ammonia) uptake rate measurements ifrom SIS experiments (units = per hour)
+90000272 | 20 | Ni | mg/m3 | 2 | 3 | -1.00000 | 50.00000 | BCPIERRE | Nickel - filtered or unfiltered
+90000043 | 90 | Ni - filtered | mg/m3 | 3 | 2 | 0.00000 | 250.00000 | P. Strain | Ni - filtered
+90000035 | 90 | Ni - unfiltered | mg/m3 | 3 | 2 | 0.00000 | 200.00000 | P. Strain | Ni - unfiltered
+90000222 | 20 | Ni-particulate | ug/g | 3 | 1 | -1.00000 | 1500.00000 | BCPIERRE | Nickel - particulate
+90000354 | 20 | Ni-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Nickel - Sediment
+90000014 | 90 | Nitrate | mmol/m3 | 4 | 2 | -1.00000 | 75.00000 | P. Strain | Nitrate + nitrite
+90000027 | 90 | Nitrite | mmol/m3 | 2 | 3 | 0.00000 | 25.00000 | P. Strain | Nitrite
+90000070 | 90 | NO_Broecker | umole/kg | 4 | 2 | 0.00000 | 600.00000 | P. Strain | Broecker's parameter NO = O2 + 9.83 * NO3
+90000000 | 20 | Not Applicable | none | 0 | 0 | 0.00000 | 2459.00000 | BCPIERRE | Used when not a reteivable parameter
+90000152 | 90 | NO3Uptake_SIS_day | umol/m3/day | 4 | 2 | 0.00000 | 2000.00000 | KennedyM | Nitrogen (nitrate) uptake rate measurements from SIS experiments (units = per day)
+90000151 | 90 | NO3Uptake_SIS_hr | umol/m3/hr | 4 | 2 | 0.00000 | 2000.00000 | KennedyM | Nitrogen (nitrate) uptake rate measurements from SIS experiments (units = per hour)
+90000150 | 90 | Nucleic acid - DNA | mg/m3 | 3 | 1 | 0.00000 | 25.00000 | KennedyM | Deoxyribonucleic acid (DNA); biochemical indicator of microplankton biomass
+90000148 | 90 | Nucleic acid - RNA | mg/m3 | 3 | 1 | 0.00000 | 26.00000 | KennedyM | Ribonucleic acid (RNA); biochemical indicator of microplankton biomass
+90000110 | 90 | Oil - tarballs | mg/m2 | 4 | 5 | 0.00000 | 9999.00000 | BIOCHEM | Particulate petroleum residues (tarballs)
+90000105 | 90 | Oil in surf layer | mg/m3 | 4 | 3 | 0.00000 | 2000.00000 | BIOCHEM | Dissolved/dispersed oil in the surface microlayer
+90000005 | 90 | Oil in water | mg/m3 | 6 | 2 | 0.00000 | 3000.00000 | P. Strain | Total dissolved / dispersed oil
+90000020 | 90 | O18 - Total CO2 | o/oo PDB | 4 | 2 | -30.00000 | 10.00000 | P. Strain | O-18/O-16 ratio in TCO2, v PDB (PeeDee Belemnite)
+90000031 | 90 | O18 - Water | o/oo PDB | 3 | 2 | -60.00000 | 5.00000 | P. Strain | O-18/O-16 in water, v SMOW (Standard Mean Ocean Water)
+90000004 | 90 | O2 | mmol/m3 | 4 | 1 | 0.00000 | 560.00000 | P. Strain | Dissolved oxygen
+90000477 | 20 | O2 mL/L | ml/l | 2 | 4 | 0.00000 | 13.00000 | BONDS | Dissolved oxygen
+90000184 | 20 | O2_PG_Insitu_hr | mg O2 m-3 h-1 | 2 | 3 | -99.00000 | 999.00000 | MARY | Phytosynthetic rate measurement made by changes in dissolved O2 - Gross oxygen production; insitu
+90000185 | 20 | O2_PN_Insitu_hr | mg O2 m-3 h-1 | 2 | 3 | -99.00000 | 999.00000 | MARY | Phytosynthetic rate measurement made by changes in dissolved O2 - Net oxygen production; insitu incu
+90000186 | 20 | O2_PR_Insitu_hr | mg O2 m-3 h-1 | 2 | 3 | -99.00000 | 999.00000 | MARY | Phytosynthetic rate measurement made by changes in dissolved O2 - Oxygen respiration; insitu incubat
+90000284 | 20 | P | mg/m3 | 3 | 2 | -1.00000 | 100.00000 | BCPIERRE | Phosphorus - filtered not preserved
+90000084 | 90 | PAR | uE m-2 s-1 | 4 | 3 | 0.00000 | 5000.00000 | P. Strain | Photosynthetically active radiation (400-700 nm)
+90000291 | 20 | PAR_4pi_Index | Volts | 2 | 2 | -5.00000 | 5.00000 | MARY | PAR in units of voltages
+90000259 | 20 | Pb | mg/m3 | 1 | 3 | -1.00000 | 20.00000 | BCPIERRE | Lead - filtered or unfiltered
+90000081 | 90 | Pb - filtered | mg/m3 | 2 | 3 | 0.00000 | 0.50000 | P. Strain | Pb - filtered
+90000122 | 20 | Pb - unfiltered | mg/m3 | 2 | 3 | 0.00000 | 0.50000 | R. Benjamin | Lead - unfiltered
+90000247 | 20 | Pb-particulate | ug/g | 3 | 1 | -1.00000 | 500.00000 | BCPIERRE | Lead - particulate
+90000358 | 20 | Pb-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Lead - Sediment
+90000008 | 90 | pH | none | 2 | 3 | 2.00000 | 9.00000 | P. Strain | pH
+90000030 | 90 | Phaeophytin | mg/m3 | 3 | 2 | 0.00000 | 50.00000 | P. Strain | Phaeophytin
+90000198 | 20 | pH_invitro_temp | degrees C | 3 | 3 | -2.00000 | 35.00000 | MARY | reference lab temperature
+90000013 | 90 | Phosphate | mmol/m3 | 4 | 3 | 0.00000 | 50.00000 | P. Strain | Dissolved inorganic phosphate
+90000079 | 90 | Phosphate: part. | mmol/m3 | 3 | 3 | 0.00000 | 30.00000 | P. Strain | Particulate phosphate
+90000085 | 90 | Photic depth | m | 3 | 0 | 0.00000 | 500.00000 | P. Strain | Photic depth (1 % of surface light level)
+90000009 | 90 | pKa | none | 1 | 4 | 5.00000 | 7.00000 | P. Strain | pK for the first dissociation constant of H2CO3
+90000015 | 90 | POC | mg/m3 | 5 | 2 | 0.00000 | 11000.00000 | P. Strain | Particulate organic carbon (POC)
+90000016 | 90 | POH | mg/m3 | 4 | 2 | 0.00000 | 500.00000 | P. Strain | Particulate organic hydrogen (POH)
+90000017 | 90 | PON | mg/m3 | 4 | 2 | 0.00000 | 1500.00000 | P. Strain | Particulate organic nitrogen (PON)
+90000200 | 20 | POP | mg/m3 | 4 | 2 | 0.00000 | 1500.00000 | MARY | particulate organic phosphate
+90000094 | 90 | PP_ALPHA | C chl-1 h-1 W-1 m-2 | 5 | 5 |  |  | Mary Kennedy | Primary Production Parameter ALPHA
+90000245 | 20 | P-particulate | g/kg | 4 | 0 | -1.00000 | 9000.00000 | BCPIERRE | Phosphorus - particulate
+90000098 | 90 | PP_BETA | C chl-1 h-1 W-1 m-2 | 5 | 5 |  |  | M. KENNEDY | PRIMARY PRODUCTION BETA
+90000102 | 90 | PP_IB | W m-2 | 5 | 5 |  |  | M. KENNEDY | PRIMARY PRODUCTION IB
+90000100 | 90 | PP_IK | W m-2 | 5 | 5 |  |  | M. KENNEDY | PRIMARY PRODUCTION IK
+90000103 | 90 | PP_IM | W m-2 | 5 | 5 |  |  | M. KENNEDY | PRIMARY PRODUCTION IM
+90000117 | 90 | PP_INC | hours | 2 | 2 | 0.00000 | 99.00000 | BIOCHEM | Primary Production INC
+90000101 | 90 | PP_IS | W m-2 | 5 | 5 |  |  | M. KENNEDY | PRIMARY PRODUCTION IS
+90000096 | 90 | PP_PM | mg C mg Chl-1 h-1 | 5 | 5 |  |  | M. KENNEDY | PRIMARY PRODUCTION:  PRODUCTION MAXIMUM
+90000097 | 90 | PP_PS | mg C mg Chl-1 h-1 | 5 | 5 |  |  | M. KENNEDY | PRIMARY PRODUCTION PS
+90000099 | 90 | PP_RB | mg C mg Chl-1 h-1 | 5 | 5 |  |  | M. KENNEDY | PRIMARY PRODUCTION RB
+90000118 | 20 | PP_TI | degrees C | 5 | 5 |  |  | MARY | PRIMARY PRODUCTION TS SAMPLE TEMPERATURE
+90000104 | 90 | PP_TS | hours | 5 | 5 |  |  | M. KENNEDY | PRIMARY PRODUCTION TS SAMPLE TEMPERATURE
+90000088 | 90 | PP_TYPE_OF_FIT | none | 1 | 0 | 3.00000 | 4.00000 | P. Strain | Type of fit (number of parameters)
+90000001 | 90 | Pressure | dbar | 5 | 2 | 0.00000 | 12000.00000 | P. Strain | Pressure
+90000082 | 90 | PrimProd_InSitu_Day | mg C/m**3/day | 3 | 3 | 0.00000 | 500.00000 | P. Strain | Primary production, in situ
+90000140 | 20 | PrimProd_InSitu_Hr | mg C/m**3/h | 3 | 3 | 0.00000 | 100.00000 | BCPIERRE | Primary production determined using 14C uptake and rate calculated per hour
+90000208 | 20 | PrimProd_SIS_Day_C14 | mg C/m**3/day | 3 | 3 | 0.00000 | 2000.00000 | MARY | primary Production frim simulated insitu using C14
+90000159 | 30 | PrimProd_SIS_Hr | mg C/m**3/h | 3 | 3 | 0.00000 | 100.00000 | DEVINEL | Primary production determined using 14C uptake, simulated insitu incubation, rate calculated per hr
+90000189 | 20 | PrimProd_SIS_Hr_C13 | mg C/m**3/h | 3 | 3 | 0.00000 | 2000.00000 | MARY | Primary production from simulated in situ experiments using C13 (Carbon per area per hour)
+90000191 | 20 | PrimProd_SIS_Hr_24hr | mg C/m**3/h | 3 | 3 | 0.00000 | 100.00000 | MARY | Primary production determined using 14C uptake, 24hr SIS incubation, rate calculated per hr
+90000089 | 90 | Production max | C chl-1 h-1 W-1 m-2 | 4 | 2 |  |  | P. Strain | Primary production maximum
+90000057 | 90 | Propane | ppmv | 3 | 2 | 0.00000 | 30.00000 | P. Strain | Propane
+90000149 | 90 | Protein | mg/m3 | 3 | 1 | 0.00000 | 700.00000 | KennedyM | Protein; biochemical indicator of microplankton biomass
+90000356 | 20 | P-Sediment | ug/g | 2 | 2 | 0.00000 | 20000.00000 | BCPIERRE | Phosphorus - sediment
+90000263 | 20 | Rb | mg/m3 | 3 | 2 | -1.00000 | 500.00000 | BCPIERRE | Rubidium - filtered or unfiltered
+90000244 | 20 | Rb-particulate | ug/g | 3 | 1 | -1.00000 | 200.00000 | BCPIERRE | Rubidium - particulate
+90000360 | 20 | Rb-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Rubidium - Sediment
+90000116 | 20 | Rosette position # | none | 2 | 0 | 0.00000 | 36.00000 | MARY | position of bottle in rosette -- useful when looking for "leakers"
+90000114 | 20 | Rosette trip # | none | 2 | 0 | 0.00000 | 25.00000 | MARY | gives firing order of bottles on CTD rosette
+90000285 | 20 | Ru-particulate | ug/g | 3 | 2 | -1.00000 | 150.00000 | BCPIERRE | Ruthenium -particulate
+90000286 | 20 | S | ug/g | 3 | 2 | 0.00000 | 100.00000 | BCPIERRE | Sulphur - filtered or unfiltered
+90000002 | 90 | Salinity | none | 3 | 3 | 0.00000 | 400.00000 | P. Strain | Salinity
+90000303 | 20 | Sample Size NumIndiv | none | 3 | 0 | 0.00000 | 100.00000 | MARY | Sample size (number of individuals in the experiment)
+90000265 | 20 | Sb | mg/m3 | 2 | 2 | -1.00000 | 20.00000 | BCPIERRE | Antimony - filtered or unfiltered
+90000251 | 20 | Sb-particulate | ug/g | 2 | 2 | -1.00000 | 50.00000 | BCPIERRE | Antimony - particulate
+90000364 | 20 | Sb-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Antimony - Sediment
+90000366 | 20 | Sc-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Scandium - Sediment
+90000260 | 20 | Se | mg/m3 | 10 | 10 | -1.00000 | 1000.00000 | BCPIERRE | Selenium - filtered or unfiltered
+90000121 | 90 | secchi_depth | m | 3 | 2 | 0.01000 | 999.99000 | MARY | secchi
+90000055 | 90 | Sediment oil | ug/g | 3 | 2 | 0.00000 | 50.00000 | P. Strain | Oil in sediments
+90000214 | 20 | Sedimentating_C | mg/m2/day | 5 | 5 | 0.00000 | 2000.00000 | MARY | Sedimentating_Carbon
+90000212 | 20 | Sedimentating_Chl | mg/m2/day | 5 | 5 | 0.00000 | 2000.00000 | MARY | Sedimentating_Chl
+90000216 | 20 | Sedimentating_IncT | hours | 3 | 1 | 0.00000 | 100.00000 | MARY | Sedimentating_Incubation_Time
+90000215 | 20 | Sedimentating_N | mg/m2/day | 5 | 5 | 0.00000 | 2000.00000 | MARY | Sedimentating_Nitrogen
+90000213 | 20 | Sedimentating_Phaeo | mg/m2/day | 5 | 5 | 0.00000 | 2000.00000 | MARY | Sedimentating_Phaeo
+90000210 | 20 | Sedimentating_POC | mg/m2/day | 5 | 5 | 0.00000 | 2000.00000 | MARY | Sedimentating_POC
+90000211 | 20 | Sedimentating_PON | mg/m2/day | 5 | 5 | 0.00000 | 2000.00000 | MARY | Sedimentating PON
+90000248 | 20 | Se-particulate | ug/g | 10 | 10 | -1.00000 | 1000.00000 | BCPIERRE | Selenium - particulate
+90000368 | 20 | Se-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Selenium - Sediment
+90000012 | 90 | Silicate | mmol/m3 | 4 | 2 | 0.00000 | 260.00000 | P. Strain | Dissolved reactive silicate
+90000193 | 20 | Size-LengthRangeMin | mm | 5 | 3 | 0.00000 | 10000.00000 | MARY | size measurement, length range minimum
+90000270 | 20 | Sn | mg/m3 | 1 | 1 | -1.00000 | 5.00000 | BCPIERRE | Tin - filtered or unfiltered
+90000196 | 20 | SnowDepthRange | cm | 4 | 1 | 0.00000 | 9999.00000 | MARY | depth range of snow (ice algae studies)
+90000250 | 20 | Sn-particulate | ug/g | 3 | 1 | -1.00000 | 250.00000 | BCPIERRE | Tin - particulate
+90000370 | 20 | Sn-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Tin - Sediment
+90000249 | 20 | S-particulate | g/kg | 10 | 10 | -1.00000 | 1000.00000 | BCPIERRE | Sulphur - particulate
+90000022 | 90 | SPM | mg/l | 3 | 3 | 0.00000 | 500.00000 | P. Strain | Suspended particulate matter (SPM)
+90000269 | 20 | Sr | mg/m3 | 4 | 1 | -1.00000 | 2000.00000 | BCPIERRE | Strontium - filtered or unfiltered
+90000243 | 20 | Sr-particulate | ug/g | 3 | 0 | -1.00000 | 1500.00000 | BCPIERRE | Strontium - particulate
+90000372 | 20 | Sr-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Strontium - Sediment
+90000362 | 20 | S-Sediment | ug/g | 2 | 2 | 0.00000 | 1000.00000 | BCPIERRE | Sulphur - Sediment
+90000025 | 90 | Strontium-90 - total | mBq/l | 3 | 2 |  |  | P. Strain | Strontium-90 - unfiltered
+90000048 | 90 | Sulfate | p | 3 | 2 | 0.00000 | 50.00000 | P. Strain | Sulfate
+90000288 | 20 | Sulphide | mmol/m3 | 4 | 4 | 0.00000 | 1000.00000 | MARY | Sulphide
+90000374 | 20 | Ta-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Tantalum - Sediment
+90000268 | 20 | Te | mg/m3 | 10 | 10 | -1.00000 | 1000.00000 | BCPIERRE | Tellurium - filtered or unfiltered
+90000003 | 90 | Temperature | degrees C | 3 | 3 | -3.00000 | 35.00000 | P. Strain | Temperature
+90000234 | 20 | Te-particulate | ug/g | 10 | 10 | -1.00000 | 1000.00000 | BCPIERRE | Tellurium - particulate
+90000376 | 20 | Th-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Thorium - Sediment
+90000087 | 90 | Thymidine production | pmol m-3 h-1 | 5 | 2 |  |  | P. Strain | Bacterial thymidine production
+90000267 | 20 | Ti | mg/m3 | 2 | 1 | -1.00000 | 90.00000 | BCPIERRE | Titanium - filtered or unfiltered
+90000238 | 20 | Ti-particulate | ug/g | 4 | 0 | -1.00000 | 9000.00000 | BCPIERRE | Titanium - particulate
+90000378 | 20 | Ti-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Titanium - Sediment
+90000266 | 20 | Tl | mg/m3 | 1 | 2 | -1.00000 | 1.00000 | BCPIERRE | Thallium - filtered or unfiltered
+90000240 | 20 | Tl-particulate | ug/g | 1 | 2 | -1.00000 | 9.00000 | BCPIERRE | Thallium - particulate
+90000018 | 90 | TOC | mmol/m3 | 4 | 2 | 0.00000 | 999.00000 | P. Strain | Total organic carbon (dissolved + particulate, TOC)
+90000080 | 90 | Total nitrogen | mmol/m3 | 3 | 2 | 0.00000 | 100.00000 | P. Strain | Total nitrogen
+90000071 | 90 | Total phosphorus | mmol/m3 | 2 | 3 | 0.00000 | 30.00000 | P. Strain | Total phosphorus concentration (organic + inorganic)
+90000053 | 90 | Tritium | Bq/l | 4 | 2 | 0.00000 | 20.00000 | P. Strain | H-3, tritium (unfiltered)
+90000054 | 90 | Tritium error | Bq/l | 2 | 2 | 0.00000 | 5.00000 | P. Strain | Tritium error
+90000065 | 90 | Tritium 81 | Bq/l | 4 | 2 | 0.00000 | 30.00000 | P. Strain | Tritium, referenced to 1981
+90000261 | 20 | U | mg/m3 | 1 | 2 | -1.00000 | 2.00000 | BCPIERRE | Uranium -  filtered or unfiltered
+90000241 | 20 | U-particulate | ug/g | 2 | 1 | -1.00000 | 20.00000 | BCPIERRE | Uranium - particulate
+90000072 | 90 | Urea | mmol/m3 | 2 | 2 | 0.00000 | 10.00000 | P. Strain | Urea
+90000156 | 90 | UreaUptake_SIS_day | umol/m3/day | 4 | 2 | 0.00000 | 2000.00000 | KennedyM | not to be used yet Mary to update this week
+90000155 | 90 | UreaUptake_SIS_hr | umol/m3/hr | 4 | 2 | 0.00000 | 2000.00000 | KennedyM | not to be used yet Mary to update this week
+90000380 | 20 | U-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Uranium - Sediment
+90000264 | 20 | V | mg/m3 | 1 | 2 | -1.00000 | 9.00000 | BCPIERRE | Vanadium - filtered or unfiltered
+90000060 | 90 | V - filtered | mg/m3 | 3 | 2 |  |  | P. Strain | V - filtered
+90000239 | 20 | V-particulate | ug/g | 3 | 0 | -1.00000 | 500.00000 | BCPIERRE | Vanadium - particulate
+90000382 | 20 | V-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Vanadium - Sediment
+90000384 | 20 | W-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Tungsten - Sediment
+90000386 | 20 | Y-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Yttrium - Sediment
+90000262 | 20 | Zn | mg/m3 | 3 | 1 | -1.00000 | 500.00000 | BCPIERRE | Zinc - filtered or unfiltered
+90000045 | 90 | Zn - filtered | mg/m3 | 4 | 2 | 0.00000 | 500.00000 | P. Strain | Zn - filtered
+90000037 | 90 | Zn - unfiltered | mg/m3 | 4 | 2 | 0.00000 | 1000.00000 | P. Strain | Zn - unfiltered
+90000236 | 20 | Zn-particulate | ug/g | 4 | 1 | -1.00000 | 2000.00000 | BCPIERRE | Zinc - particulate
+90000388 | 20 | Zn-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Zinc - Sediment
+90000390 | 20 | Zr-Sediment | ug/g | 2 | 2 | 0.00000 | 50.00000 | BCPIERRE | Zircomium - Sediment
