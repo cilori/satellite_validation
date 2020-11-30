@@ -83,3 +83,11 @@ Files in this repository:
 
 **02b_L3b_matchups.py**  
 
+
+### STEP 3: Compute statistics for satellite matchups
+
+**03a_matchup_analysis.Rmd**  
+
+
+
+
