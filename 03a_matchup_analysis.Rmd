@@ -1,0 +1,612 @@
+---
+title: "Matchup analysis"
+output: html_document
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "03_matchup_analysis", output_file = paste0("sensor_matchup_analysis_", format(Sys.Date(), "%Y%m%d"))) })
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+sensors <- c("MODIS", "SeaWiFS", "VIIRS-SNPP", "OLCI-A", "OLCI-A flagged", "OLCI-B", "OLCI-B flagged")
+
+all_variables <- list("MODIS"=c("CHL_OCX", "CHL_POLY4", "CHL_GSM_GS"),
+                      "SeaWiFS"=c("CHL_OCX", "CHL_POLY4", "CHL_GSM_GS"),
+                      "VIIRS-SNPP"=c("CHL_OCX", "CHL_POLY4", "CHL_GSM_GS"),
+                      "OLCI-A"=c("CHL1", "CHL2", "CHL-OC5"),
+                      "OLCI-A flagged"=c("CHL1", "CHL2", "CHL-OC5"),
+                      "OLCI-B"=c("CHL1"),
+                      "OLCI-B flagged"=c("CHL1"))
+
+```
+
+
+## `r paste0(unique(gsub(" flagged", "", sensors)), collapse=", ")` {.tabset}
+
+### Code
+
+```{r echo=TRUE, warning=FALSE, message=FALSE}
+library(dplyr)
+library(tidyr)
+library(oceancolouR)
+library(ggplot2)
+library(mapdata)
+library(patchwork)
+library(DT)
+library(grid)
+library(scales) # for breaks_pretty in boxplot axis labels
+
+
+# restrict matchups to these years (-Inf, Inf for no restrictions)
+years <- c(-Inf,Inf)
+
+# region bounds
+lat_bounds <- c(39,63)
+lon_bounds <- c(-71,-42)
+
+max_dist <- 10000 # metres
+
+max_depth <- 10 # in situ depth, metres
+
+# maximum number of matchup pixels for each in situ record (within max_dist from in situ data)
+max_matchups <- 100 # from the input file
+max_matchups_new <- 25 # further restrictions to the output
+
+# use the median of the "max_matchup_new" closest points? (or use the single closest point?)
+use_median <- TRUE
+
+olci_flags <- c("INVALID", "LAND", "TURBID", "ICE", "CLOUD1", "CLOUD2")
+
+input_path <- "02_matchups/"
+
+
+#*******************************************************************************
+# READ AND FORMAT DATA
+
+# use this to collect data from all sensors/variables to plot to the map later, color-coded by sensor
+full_df <- data.frame(matrix(nrow=0, ncol=5), stringsAsFactors = FALSE)
+colnames(full_df) <- c("Sensor", "Year", "DOY", "Latitude", "Longitude")
+full_df$Sensor <- as.character(full_df$Sensor)
+full_df[,2:3] <- lapply(full_df[,2:3], as.integer)
+full_df[,4:5] <- lapply(full_df[,4:5], as.numeric)
+
+data_list <- list()
+plot_lm_list <- list()
+plot_box_list <- list()
+list_ind <- 1
+
+num_cols <- length(unlist(all_variables[names(all_variables) %in% sensors]))
+stat_df <- data.frame(matrix(nrow=length(sensors), ncol=10), stringsAsFactors = FALSE)
+colnames(stat_df) <- c("Sensor", "Variable", "Flagged", "Years", "Intercept", "Slope", "R^2", "RMSE", "pvalue", "num_obs")
+
+
+# loop through each sensor, and each of the variables for the sensor, and calculate statistics, fits, and create maps and plots
+for (i in 1:length(sensors)) {
+    
+    sensor <- sensors[i]
+    
+    variables <- all_variables[[sensor]]
+    
+    for (j in 1:length(variables)) {
+        
+        variable <- variables[j]
+        
+        input_fname <- gsub(" flagged", "", paste0("matchups_L3b_daily_", sensor, "_", variable, "_maxdist_", max_dist, "_maxdepth_", max_depth, "_maxmatchups_", max_matchups, ".csv"))
+        
+        if (!file.exists(paste0(input_path, input_fname))) {next}
+        
+        flagged <- grepl("flagged", sensor)
+        
+        # this must be different because CHL-OC5 is written in the table as CHL.OC5
+        df_sat_var <- ifelse(variable=="CHL-OC5", "CHL.OC5", variable)
+        
+        df <- read.csv(paste0(input_path, input_fname)) %>%
+            dplyr::mutate_if(is.numeric, round, digits = 3)
+        
+        # assign the variable names to a generic name for easier use below
+        df$sat_var <- df[, paste0("sat_", df_sat_var)]
+        df$in_situ_var <- df[, "HPLC_CHLA"]
+        
+        df <- df %>%
+            
+            # remove bad data
+            dplyr::filter(is.finite(sat_var) & sat_var > 0 & is.finite(in_situ_var) & in_situ_var > 0) %>%
+            
+            # restrict to a certain number of matchups for each day/pixel
+            dplyr::group_by(YEAR, DOY, LATDEC, LONGDEC, DEPTH) %>%
+            dplyr::slice_min(order_by = dist_to_matchup, n = max_matchups_new) %>%
+            dplyr::ungroup() %>%
+            
+            # retrieve a single matchup for comparison to in situ data (either single closest, or median of closest pixels)
+            dplyr::arrange(., cruise_id, ID, DEPTH, LATDEC, LONGDEC, YEAR, DOY, HPLC_CHLA, HPLC_FUCOX, dist_to_matchup) %>%
+            dplyr::group_by(., cruise_id, ID, DEPTH, LATDEC, LONGDEC, YEAR, DOY, HPLC_CHLA, HPLC_FUCOX)
+        
+        if (use_median) {
+          # use the median of all closest matchups
+          df <- df %>%
+            dplyr::summarize_all(., .funs = median, na.rm=TRUE) %>%
+            dplyr::select(-pancan_lon, -pancan_lat)
+        } else {
+          # OR use the closest matchup
+          df <- df %>%
+            dplyr::summarize_all(., .funs = dplyr::first)
+        }
+        
+        df <- df %>%
+            dplyr::ungroup() %>%
+            dplyr::arrange(., YEAR, DOY)
+        
+        
+        # restrict to certain years
+        if (all(is.finite(years))) {
+          df <- df %>% dplyr::filter(between(YEAR, years[1], years[2]))
+          tmp_years <- c(max(min(df$YEAR, na.rm=TRUE),years[1]), min(max(df$YEAR, na.rm=TRUE), years[2]))
+        } else if (is.finite(years[1])) {
+          df <- df %>% dplyr::filter(YEAR >= years[1])
+          tmp_years <- c(max(min(df$YEAR, na.rm=TRUE),years[1]), max(df$YEAR, na.rm=TRUE))
+        } else if (is.finite(years[2])) {
+          df <- df %>% dplyr::filter(YEAR <= years[2])
+          tmp_years <- c(min(df$YEAR, na.rm=TRUE), min(max(df$YEAR, na.rm=TRUE), years[2]))
+        } else {
+          tmp_years <- range(df$YEAR, na.rm=TRUE)
+        }
+        
+        
+        # restrict lat/lon
+        df <- df %>%
+          dplyr::filter(between(LATDEC,lat_bounds[1],lat_bounds[2]), between(LONGDEC,lon_bounds[1],lon_bounds[2]))
+        
+        # collect data for mapping later
+        full_df <- dplyr::bind_rows(full_df,
+                                    df %>%
+                                      dplyr::mutate(Sensor=sensor) %>%
+                                      dplyr::rename(Year=YEAR, Latitude=LATDEC, Longitude=LONGDEC) %>%
+                                      dplyr::select(Sensor, Year, DOY, Latitude, Longitude))
+        
+        # FOR OLCI, RESTRICT BY FLAG VALUES
+        # All rows should be kept for printing and plotting, but flagged rows should not be used in the stats, linear regression, etc., and flagged values should be colored differently
+        if (startsWith(sensor, "OLCI") & flagged & length(olci_flags) > 0) {
+            df <- df %>%
+              dplyr::mutate(mask = rowSums(.[names(.) %in% paste0("MASK_", olci_flags)], na.rm=TRUE)) %>%
+              dplyr::mutate(mask = ifelse(mask > 0, 1, 0))
+              tmp_df_stats <- df %>% dplyr::filter(mask != 1)
+        } else {
+            df$mask <- rep(0, nrow(df))
+            tmp_df_stats <- df
+        }
+        
+        # adjust the mask column - for non-flagged values, include info on season
+        df[df$mask==0 & df$DOY <= 181, "mask"] <- 2
+        df[df$mask==0 & df$DOY > 181, "mask"] <- 3
+        df$mask <- factor(df$mask)
+        
+        
+        #***********************************************************************
+        # CALCULATE STATS
+        
+        errors <- vector_errors(as.numeric(unlist(df[,"HPLC_CHLA"])),
+                            as.numeric(unlist(df[,paste0("sat_", df_sat_var)])))
+        df <- dplyr::bind_cols(df, round(errors,3))
+        
+        mdf_lm <- lm(log10(sat_var) ~ log10(in_situ_var), data=tmp_df_stats)
+        
+        stat_df[list_ind,] <- c(sensor, variable, flagged,
+                                paste0(tmp_years, collapse="-"),
+                                round(as.numeric(coef(mdf_lm)[1]),3),
+                                round(as.numeric(coef(mdf_lm)[2]),3),
+                                round(summary(mdf_lm)$r.squared,3),
+                                round(rmse(log10(tmp_df_stats$sat_var), log10(tmp_df_stats$in_situ_var)),3),
+                                formatC(lmp(mdf_lm), format="e", digits = 3),
+                                nobs(mdf_lm))
+        
+        
+        #***********************************************************************
+        # CREATE LINEAR MODEL PLOT
+        
+        p_lm <- ggplot(df) +
+              geom_point(aes(x=in_situ_var, y=sat_var, color=mask), size=1.5, alpha=0.7) +
+              # invisible dummy layer that will force the full range of colors for the legend, even if the points aren't on this graph
+              geom_point(data=data.frame(sat_var=1:3, in_situ_var=1:3, mask=as.factor(1:3), stringsAsFactors = FALSE), aes(x=in_situ_var, y=sat_var, color=mask), alpha = 0) +
+              # 1:1 line
+              geom_abline(slope=1, intercept=0) +
+              # linear model
+              geom_abline(slope=coef(mdf_lm)[2], intercept=coef(mdf_lm)[1], colour="red") +
+              # log scales
+              scale_x_continuous(limits=c(0.1,10), trans="log10") +
+              scale_y_continuous(limits=c(0.1,10), trans="log10") +
+              labs(x=paste0("In situ HPLC_CHLA"),
+                   y=variable) +
+              theme_bw() +
+              scale_colour_manual(breaks = 1:3, values = c("black", "darkgreen", "red"), labels = c("Flagged", "Spring", "Fall")) +
+              theme(legend.position="right",
+                    legend.title=element_blank(),
+                    legend.text=element_text(size = 16)) +
+              annotation_custom(grobTree(textGrob(sensor, x=0.05,  y=0.95, hjust=0, gp=gpar(fontsize=12)))) +
+              # adjust size of points in legend
+              guides(colour=guide_legend(override.aes=list(size=5)))
+        
+        plot_lm_list[[list_ind]] <- p_lm
+        
+        
+        #***********************************************************************
+        # CREATE ERROR BOXPLOTS
+        
+        p_box <- ggplot(df[df$mask != 1,], aes(x=factor(YEAR), y=percent_error, fill=factor(mask))) +
+              geom_boxplot(outlier.shape=21, outlier.size=2) +
+              # invisible dummy layer that will force the full range of colors for the legend, even if the points aren't on this graph
+              geom_point(data=data.frame(YEAR=tmp_years[2], percent_error=rep(0,2), mask=as.factor(2:3), stringsAsFactors = FALSE), aes(x=factor(YEAR), y=percent_error, fill=factor(mask)), alpha = 0) +
+              scale_y_continuous(limits=c(-200,2000), breaks=c(-100,-10,-1,1,10,100,1000), labels=c(-100,-10,-1,1,10,100,1000), trans="asinh") +
+              scale_x_discrete(breaks=breaks_pretty(n=round(diff(range(df$YEAR, na.rm=TRUE))/2))) +
+              scale_fill_manual(values=c("2"="#33EE55", "3"="#FF3333"), labels=c("Spring", "Fall")) +
+              geom_hline(yintercept=mean(unlist(df[df$mask==2, "percent_error"]), na.rm=TRUE),color='#11CC33',alpha=0.7) +
+              geom_hline(yintercept=mean(unlist(df[df$mask==3, "percent_error"]), na.rm=TRUE),color='#FF3333',alpha=0.7) +
+              theme_bw() +
+              labs(fill="Season", y=expression(paste('[',italic('Chla'),'] % error '))) +
+              theme(legend.position="right",
+                    legend.title=element_text(size = 20),
+                    legend.text=element_text(size = 16),
+                    legend.key.size = unit(3,"line"),
+                    axis.title.x=element_blank(),
+                    axis.text.x=element_text(size=10,angle=45,colour='black',vjust=1, hjust=1),
+                    axis.title.y=element_text(size=12,colour="black")) +
+              annotation_custom(grobTree(textGrob(sensor, x=0.05,  y=0.95, hjust=0, gp=gpar(fontsize=12))))
+        
+        plot_box_list[[list_ind]] <- p_box
+        
+        list_ind <- list_ind + 1
+        
+    }
+
+}
+
+```
+
+
+### Statistics table
+
+`r paste0("Below are the statistics from each set of in situ / satellite matchups, restricted to satellite matchups within ", max_dist, " metres of the in situ data sampling location, and a depth of ", max_depth, "  metres.")`  
+
+`r ifelse(use_median, paste0("Satellite data and distance to matchup are the median values of the ", max_matchups_new, " closest binned pixels to the in situ sampling location, within ", max_dist, " metres."), paste0("Satellite data and distance to matchup are from the single closest binned pixel to the in situ sampling location, within ", max_dist, " metres."))`  
+
+```{r stats}
+
+tmp_dt <- DT::datatable(stat_df,
+              extensions = list("FixedHeader" = NULL,
+                                "Buttons" = NULL),
+              options = list(search = list(regex=TRUE),
+                             bFilter = FALSE,
+                             bInfo = FALSE,
+                             dom = 'Bfrtip',
+                             pageLength = 15,
+                             scrollX = TRUE,
+                             scrollCollapse = TRUE,
+                             bPaginate = FALSE,
+                             buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
+                             fixedHeader = TRUE),
+              rownames=FALSE)
+
+tmp_dt
+
+```
+
+
+### Linear model plots
+
+Flags used for OLCI: `r paste0(olci_flags, collapse=", ")`  
+"Fall" points are defined as anything after day of year 181, and "Spring" points before that. Flagged points are in black, and have not been used in the model.  
+
+
+```{r lm, fig.width=12, fig.height=18}
+
+wrap_plots(grobs=plot_lm_list, ncol=3) + guide_area() + plot_layout(guides = "collect") 
+
+```
+
+
+
+### Error boxplots
+
+Percent error for each sensor and variable are plotted below. Green and red boxes represent spring and fall error respectively, and green and red lines represent the mean value of each.  
+
+```{r boxplots, fig.width=12, fig.height=15}
+
+wrap_plots(grobs=plot_box_list, ncol=3) + guide_area() + plot_layout(guides = "collect")
+
+```
+
+
+### Map
+
+Matchups are mapped below, colour-coded by sensor. Note that many matchups for different sensors might overlap.  
+
+```{r maps, fig.height=8}
+
+reg <- map_data("world2Hires")
+reg <- subset(reg, region == "Canada")
+reg$long <- (360 - reg$long)*-1
+
+full_df <- full_df %>%
+  dplyr::filter(!grepl("flagged", Sensor)) %>%
+  dplyr::distinct(.keep_all = TRUE)
+
+p_map <- ggplot() +
+    geom_polygon(data = reg, aes(x = long, y = lat, group = group), fill = "darkgrey", color = NA) +
+    geom_point(data = full_df, aes(x = Longitude, y = Latitude, color = factor(Sensor)), alpha = 0.5, size = 2) +
+    coord_fixed(ratio = 1.5, xlim = lon_bounds, ylim = lat_bounds) +
+    theme_bw() +
+    labs(x = "Longitude (decimal degrees)",
+         y = "Latitude (decimal degrees)",
+         color = "Sensor")
+
+p_map
+
+
+
+
+
+
+
+
+
+
+
+
+
+# # FOR L2 MATCHUPS BELOW, NOT FORMATTED YET
+# 
+# 
+# # MAKE MAPS WITH DATAPOINTS FOR SENSOR MATCHUPS.
+# 
+# # this code chunk worked in a script that extracted data from L2 matchup files,
+# # but needs some tweaking to work as a standalone script
+# 
+# # it does not yet work with l3b matchups, but the fix should be simple
+# 
+# 
+# #*******************************************************************************
+# 
+# 
+# # This loops to collect data for each sensor, then combines them into one image.
+# # This must be done before applying "index_2", which pares down results by CV.
+# 
+# # TO USE: SET ALGORITHM TO A SINGLE ALGORITHM (any, doesn't matter)
+# #         RUN ONE REGION AT A TIME
+# #         SENSOR VECTOR MUST CONTAIN ALL SENSORS
+# 
+# # # BUT ALSO REMOVE MATCHUPS WITH ANY NEGATIVE RRS
+# # for (i in 1:window_length) {
+# #
+# #     # Exclude values with missing (negative) Rrs (bad atmospheric correction)
+# #     ind <- is.finite(ncvars[[1]][,i])
+# #     for (j in 2:length(ncvars)) {
+# #         ind <- ind & is.finite(ncvars[[j]][,i])
+# #     }
+# #
+# #     # # Only exclude bad values in the band ratio reflectances
+# #     # ind <- is.finite(rrsb1[,i]) & is.finite(rrsb2[,i]) & is.finite(rrsg[,i])
+# #     # if (b3) {ind <- ind & is.finite(rrsb3[,i])}
+# #
+# #     r1 <- rrsb1[ind,i]/rrsg[ind,i]
+# #     r2 <- rrsb2[ind,i]/rrsg[ind,i]
+# #     if (b3) {r3 <- rrsb3[ind,i]/rrsg[ind,i]}
+# #     rrs_ocx <- r1
+# #     rrs_ocx[r2 > r1] <- r2[r2 > r1]
+# #     if (b3) {rrs_ocx[(r3 > r1) & (r3 > r2)] <- r3[(r3 > r1) & (r3 > r2)]}
+# #     # Calculate chl_a using the equation, for each pixel in the grid
+# #     # (length of the window) x (number of matches)
+# #     ocx[ind,i] <- 10^(coefs[['a']]
+# #                       + coefs[['b']] * log10(rrs_ocx)
+# #                       + coefs[['c']] * log10(rrs_ocx)^2
+# #                       + coefs[['d']] * log10(rrs_ocx)^3
+# #                       + coefs[['e']] * log10(rrs_ocx)^4)
+# #
+# # }
+# #
+# # # # Remove pixels 0.5*SD away from the mean of each row, and remove match if there are no longer enough valid pixels.
+# # # ocx_rmeans <- rowMeans(ocx,na.rm=T)
+# # # goodinds <- sapply(1:nrow(ocx), function(i) {rSD <- sd(ocx[i,],na.rm=T); ginds <- (sum(ocx[i,] > (ocx_rmeans[[i]] + 0.5*rSD),na.rm=T) < window_length/2); ocx[i,!ginds] <- NA; ginds})
+# #
+# # # Get the stats for each "window" around the matching point.
+# # chl_stats <- t(apply(ocx,1,pix_stat))
+# 
+# year <- isd_vars['year'][[1]]
+# doy <- isd_vars['day_of_year'][[1]]
+# month <- format(as.Date(paste0(year,doy),'%Y%j'), '%b')
+# #season <- as.character(lapply(month, function(x) {seasons[names(seasons)==x][[1]]}))
+# spring_ind <- month %in% c('Jan','Feb','Mar','Apr','May','Jun')
+# fall_ind <- month %in% c('Jul','Aug','Sep','Oct','Nov','Dec')
+# sensor_lat <- lat
+# sensor_lon <- lon
+# 
+# if (region=='extNA' & (sensor %in% c('modis','viirs')) & exclude_1516) {
+#     sensor_lat <- sensor_lat[year <= 2014]
+#     sensor_lon <- sensor_lon[year <= 2014]
+#     spring_ind <- spring_ind[year <= 2014]
+#     fall_ind <- fall_ind[year <= 2014]
+#     tz_ind <- tz_ind[year <= 2014]
+# }
+# 
+# # USE tz_ind TO EXCLUDE SOME VALUES OUTSIDE HOUR RANGE? * Jul 2019 this only affects seawifs west
+# sensor_lat <- sensor_lat[tz_ind]
+# sensor_lon <- sensor_lon[tz_ind]
+# spring_ind <- spring_ind[tz_ind]
+# fall_ind <- fall_ind[tz_ind]
+# 
+# # print(paste0(region,"_",sensor))
+# # print(paste0("latitudes: ",min(sensor_lat,na.rm=T)," to ",max(sensor_lat,na.rm=T)))
+# # print(paste0("longitudes: ",min(sensor_lon,na.rm=T)," to ",max(sensor_lon,na.rm=T)))
+# # next
+# 
+# cex <- 2
+# pch <- 21
+# alpha <- 0.6
+# 
+# library(ggmap)
+# library(mapdata)
+# library(ggpubr)
+# 
+# world <- map_data("world")
+# 
+# # Check if all the variables below exist -- If they do, continue
+# all_sens_vars_exist <- all(sapply(c("mlat","mlon","msind","mfind",
+#                                     "slat","slon","ssind","sfind",
+#                                     "vlat","vlon","vsind","vfind"),exists))
+# 
+# if (!all_sens_vars_exist) { # Do you have all variables below?
+#   if (sensor=="modis") {
+#     mlat <- sensor_lat
+#     mlon <- sensor_lon
+#     msind <- spring_ind
+#     mfind <- fall_ind
+#     if (rsa_num < nrow(reg_sens_alg)) {next} # Are you on the last row (i.e. all sensor data collected)?
+#   } else if (sensor=="seawifs") {
+#     slat <- sensor_lat
+#     slon <- sensor_lon
+#     ssind <- spring_ind
+#     sfind <- fall_ind
+#     if (rsa_num < nrow(reg_sens_alg)) {next}
+#   } else if (sensor=="viirs") {
+#     vlat <- sensor_lat
+#     vlon <- sensor_lon
+#     vsind <- spring_ind
+#     vfind <- fall_ind
+#     if (rsa_num < nrow(reg_sens_alg)) {next}
+#   }
+# }
+# 
+# if (region=="extNA") {
+#   label_x <- -69 # longitude
+#   label_y <- 61.7 # latitude
+#   label_size <- 18
+#   xlim <- c(-72,-44)
+#   ylim <- c(37,62)
+#   vgrid <- c(-70,-60,-50)
+#   hgrid <- c(40,50,60)
+#   png_width <- 2300
+#   png_height <- 2800
+#   pdf_width <- 4
+#   pdf_height <- 5
+#   png_labels_y <- c(expression(paste('40',degree,'N')),expression(paste('50',degree,'N')),expression(paste('60',degree,'N')))
+#   png_labels_x <- c(expression(paste('70',degree,'W')),expression(paste('60',degree,'W')),expression(paste('50',degree,'W')))
+#   label_plot_spring <- "a)"
+#   label_plot_fall <- "b)"
+# } else if (region=="west-coast") {
+#   label_x <- -145
+#   label_y <- 55.5
+#   label_size <- 16
+#   xlim <- c(-146,-122)
+#   ylim <- c(46,56)
+#   vgrid <- c(-140,-130)
+#   hgrid <- c(50,55)
+#   png_width <- 3000
+#   png_height <- 2000
+#   pdf_width <- 5.5
+#   pdf_height <- 3.5
+#   png_labels_y <- c(expression(paste('50',degree,'N')),expression(paste('55',degree,'N')))
+#   png_labels_x <- c(expression(paste('140',degree,'W')),expression(paste('130',degree,'W')))
+#   label_plot_spring <- "c)"
+#   label_plot_fall <- "d)"
+# }
+# 
+# temp_df_s <- data.frame(lat=slat[ssind],lon=slon[ssind],Sensor=rep('SeaWiFS',sum(ssind)))
+# temp_df_m <- data.frame(lat=mlat[msind],lon=mlon[msind],Sensor=rep('MODIS',sum(msind)))
+# temp_df_v <- data.frame(lat=vlat[vsind],lon=vlon[vsind],Sensor=rep('VIIRS',sum(vsind)))
+# df_spring <- rbind(temp_df_s,temp_df_m,temp_df_v)
+# 
+# spring_pts <- ggplot(df_spring) +
+#     geom_path(data=world, aes(x=long, y=lat, group=group), color='black') + # geom_path() and coord_map() don't add the extra lines that geom_polygon() adds to connect the dots and close the polygon
+#     coord_map() +
+#     geom_point(aes(x=lon,y=lat,group=Sensor,colour=Sensor,shape=Sensor,size=Sensor)) +
+#     scale_y_continuous(limits=ylim,breaks=hgrid,labels=png_labels_y) +
+#     scale_x_continuous(limits=xlim,breaks=vgrid,labels=png_labels_x) +
+#     scale_colour_manual(values=c('#3333ff','#33dd33','#ff3366')) +
+#     scale_shape_manual(values=c(16,17,15)) +
+#     scale_size_manual(values=c(4,3,2)) +
+#     geom_vline(xintercept=vgrid, linetype="dotted", alpha=alpha) +
+#     geom_hline(yintercept=hgrid, linetype="dotted", alpha=alpha) +
+#     #labs(x='Degrees west',y='Degrees north') +
+#     theme_classic() +
+#     theme(plot.margin=unit(c(0.2,0.2,0.2,0.2),'cm'),
+#           # legend.text=element_text(size=14),
+#           # legend.title=element_text(size=18),
+#           # legend.position='right',
+#           # legend.justification='left',
+#           # legend.margin=margin(0,0,0,0),
+#           # legend.box.margin=margin(-5,-5,-5,-5),
+#           legend.position='none',
+# 
+#           # # for printing legend alone
+#           # legend.text=element_text(size=20),
+#           # legend.title=element_text(size=32),
+#           # legend.key.size=unit(1,'cm'),
+#           # legend.position='right',
+#           # legend.justification='left',
+#           # legend.box.margin=margin(10,10,10,10),
+# 
+#           #axis.title.x=element_text(size=20),
+#           axis.title.x=element_blank(),
+#           axis.text.x=element_text(size=16,colour='black'),
+#           axis.ticks.length=unit(0.2,'cm'),
+#           #axis.title.y=element_text(size=20),
+#           axis.title.y=element_blank(),
+#           axis.text.y=element_text(size=16,colour='black'),
+#           panel.border = element_rect(colour='black', fill=NA, size=1)) +# box around plot
+#     geom_label(aes(x=label_x,y=label_y,label=label_plot_spring),fill='white',label.size=NA,size=label_size)
+# 
+# #png(paste0(algperf_path,'map_',region,'_spring.png'),width=png_width,height=png_height,units="px",res=600,pointsize = 10)
+# pdf(paste0(algperf_path,'map_',region,'_spring.pdf'),width=pdf_width,height=pdf_height)
+# print(spring_pts)
+# dev.off()
+# 
+# 
+# # # Get legend of plot using ggpubr.
+# # leg <- get_legend(spring_pts)
+# # png(paste0(algperf_path,'map_legend.png'),width=1000,height=1000,units="px",res=600,pointsize = 10)
+# # as_ggplot(leg)
+# # dev.off()
+# 
+# 
+# temp_df_s <- data.frame(lat=slat[sfind],lon=slon[sfind],Sensor=rep('SeaWiFS',sum(sfind)))
+# temp_df_m <- data.frame(lat=mlat[mfind],lon=mlon[mfind],Sensor=rep('MODIS',sum(mfind)))
+# temp_df_v <- data.frame(lat=vlat[vfind],lon=vlon[vfind],Sensor=rep('VIIRS',sum(vfind)))
+# df_fall <- rbind(temp_df_s,temp_df_m,temp_df_v)
+# 
+# fall_pts <- ggplot(df_fall) +
+#     geom_path(data=world, aes(x=long, y=lat, group=group), color='black') + # geom_path() and coord_map() don't add the extra lines that geom_polygon() adds to connect the dots and close the polygon
+#     coord_map() +
+#     geom_point(aes(x=lon,y=lat,group=Sensor,colour=Sensor,shape=Sensor,size=Sensor)) +
+#     scale_y_continuous(limits=ylim,breaks=hgrid,labels=png_labels_y) +
+#     scale_x_continuous(limits=xlim,breaks=vgrid,labels=png_labels_x) +
+#     scale_colour_manual(values=c('#3333ff','#33dd33','#ff3366')) +
+#     scale_shape_manual(values=c(16,17,15)) +
+#     scale_size_manual(values=c(4,3,2)) +
+#     geom_vline(xintercept=vgrid, linetype="dotted", alpha=alpha) +
+#     geom_hline(yintercept=hgrid, linetype="dotted", alpha=alpha) +
+#     #labs(x='Degrees west',y='Degrees north') +
+#     theme_classic() +
+#     theme(plot.margin=unit(c(0.2,0.2,0.2,0.2),'cm'),
+#           # legend.text=element_text(size=14),
+#           # legend.title=element_text(size=18),
+#           # legend.position='right',
+#           # legend.justification='left',
+#           # legend.margin=margin(0,0,0,0),
+#           # legend.box.margin=margin(-5,-5,-5,-5),
+#           legend.position='none',
+#           #axis.title.x=element_text(size=20),
+#           axis.title.x=element_blank(),
+#           axis.text.x=element_text(size=16,colour='black'),
+#           axis.ticks.length=unit(0.2,'cm'),
+#           #axis.title.y=element_text(size=20),
+#           axis.title.y=element_blank(),
+#           axis.text.y=element_text(size=16,colour='black'),
+#           panel.border = element_rect(colour='black', fill=NA, size=1)) +# box around plot
+#     geom_label(aes(x=label_x,y=label_y,label=label_plot_fall),fill='white',label.size=NA,size=label_size)
+# 
+# #png(paste0(algperf_path,'map_',region,'_fall.png'),width=png_width,height=png_height,units="px",res=600,pointsize = 10)
+# pdf(paste0(algperf_path,'map_',region,'_fall.pdf'),width=pdf_width,height=pdf_height)
+# print(fall_pts)
+# dev.off()
+
+
+```
+
